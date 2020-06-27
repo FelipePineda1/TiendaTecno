@@ -13,53 +13,46 @@
     <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
 </head>
 
-<body style="padding-top:10px">
-    <div class="container-fluid text-center">
-        <br>
-        <h3>SOMOS LA MEJOR OPCIÓN PARA QUE CAMBIES TU TELÉFONO</h3>
-        <p>visita nuestras redes sociales.</p>
-    </div>
+<body style="padding-top:unset;">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark" style="background-color:#000000 !important;">
+        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+            <img src="~/images/tiendalogo.png" alt="Tienda Tecno" style="width:40px;">
+            Tienda Tecno
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="container-fluid">
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                <img src="~/images/tiendalogo.svg" alt="Tienda Tecno" style="width:40px;">
-             Tienda Tecno
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Inicio <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Celulares</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Nosotros
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Contact">Contacto</a>
+                        <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="About">Acerca de</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Privacy">Privacidad</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Configuración</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+            </form>
+        </div>
+    </nav>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Inicio <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Celulares</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Nosotros
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Contact">Contacto</a>
-                            <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="About">Acerca de</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Privacidad</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Configuración</a>
-                    </li>
-                </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-                </form>
-            </div>
-        </nav>
-    </div>
 
 
     <partial name="_CookieConsentPartial" />
