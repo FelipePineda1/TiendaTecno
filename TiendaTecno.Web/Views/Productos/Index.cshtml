@@ -1,0 +1,131 @@
+﻿@model TiendaTecno.Web.Data.Entities.PaginatedList<TiendaTecno.Web.Models.Producto>
+
+@{
+    ViewData["Title"] = "Productos";
+}
+
+<style>
+    .image {
+        opacity: 1;
+        display: block;
+        width: 100%;
+        height: auto;
+        transition: .5s ease;
+        backface-visibility: hidden;
+    }
+
+    .middle {
+        transition: .5s ease;
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    .col-md-4:hover .image {
+        opacity: 0.3;
+    }
+
+    .col-md-4:hover .middle {
+        opacity: 1;
+    }
+
+    .text {
+        background-color: #4CAF50;
+        color: white;
+        font-size: 16px;
+        padding: 16px 32px;
+    }
+
+    btn.price-btn {
+        border: groove;
+        border-color: black;
+    }
+
+        btn.price-btn:hover {
+            border: groove;
+            border-color: black;
+            background-color: aqua;
+            color: black;
+        }
+</style>
+
+
+<div class="container-fluid text-center center-block" style="padding-top:10px">
+    <div style="background-color:black !important;color: whitesmoke !important; font:candara" class="jumbotron">
+
+        <h3>¿Qué estás buscando?</h3>
+        <form class="form-inline justify-content-center" asp-action="Index" method="get">
+            <input class="form-control mr-sm-2" type="search" placeholder="Ej: iPhone 11" name="search" value="@ViewData["CurrentFilter"]">
+            <input class="btn btn-success my-2 my-sm-0" type="submit" value="Buscar" />
+        </form>
+
+    </div>
+</div>
+
+<div class="">
+
+</div>
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 text-center">
+
+                @if (!string.IsNullOrEmpty(item.UrlImage))
+                {
+                    <img class="image" src="@Url.Content(item.UrlImage)" alt="Image" style="width:100%; max-width: 100%; height: auto;" />
+                }
+                <div class="middle">
+                    @*<div class="text"><a asp-action="Details" asp-route-id="@item.ProductoID">Detalles</a></div>*@
+                    <a class="btn btn-default" asp-controller="Productos" asp-action="Details" asp-route-id="@item.ProductoID"><div class="text">Detalles</div></a>
+                </div>
+                <h6>@Html.DisplayFor(modelitem => item.NombreProducto) @Html.DisplayFor(modelitem => item.Marca.Nombre) </h6>
+                <a href="#" class="btn btn-primary price-btn">$@item.Precio</a>
+            </div>
+        }
+
+    </div>
+</div>
+
+<br />
+<hr />
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<ul class="pagination justify-content-center" style="margin:20px 0">
+    <li class="page-item @prevDisabled">
+        <a class="page-link" asp-action="Index"
+           asp-route-pageNumber="@(Model.PageIndex - 1)"
+           asp-route-currentFilter="@ViewData["CurrentFilter"]">
+            Anterior
+        </a>
+    </li>
+
+    @for (var i = 1; i <= Model.TotalPages; i++)
+    {
+    <li class="page-item">
+        <a class="page-link" asp-action="Index" asp-route-page="@i" asp-route-currentFilter="@ViewData["currentFilter"]">@i</a>
+    </li>
+    }
+
+    <li class="page-item @nextDisabled">
+        <a class="page-link" asp-action="Index"
+           asp-route-pageNumber="@(Model.PageIndex + 1)"
+           asp-route-currentFilter="@ViewData["CurrentFilter"]">
+            Siguiente
+        </a>
+    </li>
+</ul>
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>

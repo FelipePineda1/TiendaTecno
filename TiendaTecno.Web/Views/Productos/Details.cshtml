@@ -1,0 +1,41 @@
+﻿@model TiendaTecno.Web.Models.Producto
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ProductoID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col col-md-6">
+            <div class="text-center">
+                @if (!string.IsNullOrEmpty(Model.UrlImage))
+                {
+                    <img src="@Url.Content(Model.UrlImage)" alt="Image" style="width:80%;height:auto;max-width: 100%; height: auto;" />
+                }
+            </div>
+            <div class="text-center">
+                <h5>@Html.DisplayNameFor(item => item.Descripcion)</h5>
+                <p>@Html.DisplayFor(item => item.Descripcion)</p>
+                
+            </div>
+
+
+        </div>
+        <div class="col col-md-6 ">
+            <div class="text-center">
+                @if (!string.IsNullOrEmpty(Model.Marca.UrlLogo))
+                {
+                    <img src="@Url.Content(Model.Marca.UrlLogo)" alt="Image" style="width:30%;height:auto;max-width: 100%; height: auto;" />
+                }
+                <h2><strong>@Html.DisplayFor(item => item.Marca.Nombre)</strong> @Html.DisplayFor(model => model.NombreProducto)</h2>
+                <h3>@Html.DisplayFor(item => item.Precio) </h3>
+                <a href="https://Mercadolibre.com" target="_blank"><div class="btn btn-outline-warning">Añadir al carrito</div></a>
+            </div></div>
+    </div>
+</div>

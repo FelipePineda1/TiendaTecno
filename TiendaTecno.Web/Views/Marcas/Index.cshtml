@@ -1,0 +1,45 @@
+﻿@model IEnumerable<TiendaTecno.Web.Models.Marca>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UrlLogo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.OrderBy(p => p.Nombre)) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @if (!string.IsNullOrEmpty(item.UrlLogo))
+                {
+                    <img src="@Url.Content(item.UrlLogo)" alt="Image" style="width:100px;height:150px;max-width: 100%; height: auto;" />
+                }
+
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MarcaID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.MarcaID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.MarcaID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

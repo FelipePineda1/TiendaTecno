@@ -1,18 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using TiendaTecno.Web.Data;
 using TiendaTecno.Web.Models;
 
 namespace TiendaTecno.Web.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+
+        private readonly DataContext _context;
+
+        public HomeController(DataContext context)
         {
-            return View();
+            _context = context;
+        }
+        public async Task<IActionResult> Index()
+        {
+            var product = await _context.Productos.OrderBy(p => p.NombreProducto).Take(3).ToListAsync();
+            return View(product);
         }
 
         public IActionResult About()
@@ -30,6 +42,11 @@ namespace TiendaTecno.Web.Controllers
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        public IActionResult Services()
         {
             return View();
         }
